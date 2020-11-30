@@ -1,4 +1,5 @@
 {
+    "sleep_time": 60,
     "email": {
         "from": "",
         "to": [""],

@@ -1,5 +1,6 @@
 const logger = require('./logger.js')
 const mailer = require('./mailer.js')
+const config = require('./config.json')
 const scraper = require('./scraper.js')
 
 /**
@@ -24,5 +25,5 @@ function sendEmail(item) {
         .catch(err => logger.printf("error while sending mail: %s", err))
 }
 
-logger.print("begin scraping items")
-scraper.go(60000, sendEmail)
+logger.print("begin scraping items every %d seconds", config.sleep_time)
+scraper.go(config.sleep_time * 1000, sendEmail)
