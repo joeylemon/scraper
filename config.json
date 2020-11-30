@@ -1,0 +1,16 @@
+{
+    "email": {
+        "from": "",
+        "to": [""],
+        "nodemailer_settings": {
+            "service": "gmail",
+            "auth": {
+                "user": "",
+                "pass": ""
+            }
+        }
+    },
+    "2captcha": {
+        "api_token": ""
+    }
+}

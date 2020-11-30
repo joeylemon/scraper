@@ -1,0 +1,23 @@
+{
+  "name": "parts",
+  "version": "1.0.0",
+  "description": "Scrape websites, such as online retailers, searching for item availability",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --no-warnings index.js --verbose",
+    "start": "node --no-warnings index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "fake-useragent": "^1.0.1",
+    "moment-timezone": "^0.5.32",
+    "nodemailer": "^6.4.16",
+    "puppeteer": "^5.5.0",
+    "puppeteer-extra": "^3.1.15",
+    "puppeteer-extra-plugin": "^3.1.7",
+    "puppeteer-extra-plugin-adblocker": "^2.11.9",
+    "puppeteer-extra-plugin-recaptcha": "^3.3.0",
+    "puppeteer-extra-plugin-stealth": "^2.6.5",
+    "yargs": "^16.1.1"
+  }
+}
