@@ -25,5 +25,5 @@ function sendEmail(item) {
         .catch(err => logger.printf("error while sending mail: %s", err))
 }
 
-logger.print("begin scraping items every %d seconds", config.sleep_time)
+logger.printf("begin scraping items every %d seconds", config.sleep_time)
 scraper.go(config.sleep_time * 1000, sendEmail)

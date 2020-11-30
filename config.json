@@ -1,8 +1,8 @@
 {
     "sleep_time": 60,
     "email": {
-        "from": "",
-        "to": [""],
+        "from": "werwer",
+        "to": ["ewrwer"],
         "nodemailer_settings": {
             "service": "gmail",
             "auth": {
