@@ -16,6 +16,7 @@ puppeteer.use(StealthPlugin())
 puppeteer.use(AdblockerPlugin())
 
 if (utils.isCaptchaSolvingEnabled()) {
+    logger.printfv("configure captcha solving with api token %s", config["2captcha"]["api_token"])
     puppeteer.use(
         RecaptchaPlugin({
             provider: {
@@ -37,7 +38,7 @@ class Scraper {
         try {
             // Launch browser with options to help reduce CPU usage
             logger.printv("launch browser")
-            const proxyUrl = await proxyChain.anonymizeProxy('http://zhlqmfxz-rotate:axnnhrifc9yd@p.webshare.io:80')
+            const proxyUrl = await proxyChain.anonymizeProxy('http://p.webshare.io:9999')
             this.browser = await puppeteer.launch({
                 headless: !utils.isVisualBrowserEnabled(),
                 userDataDir: "./browser_data",
@@ -128,6 +129,7 @@ class Scraper {
             if (item.setup) await item.setup(page, item)
 
             if (utils.isCaptchaSolvingEnabled()) {
+                logger.printv("begin solving captcha")
                 const preCaptcha = Date.now()
                 await page.solveRecaptchas()
 
@@ -136,6 +138,8 @@ class Scraper {
                     logger.printv("solved captcha, go to url")
                     await page.goto(item.url, { waitUntil: item.waitUntil ? item.waitUntil : 'networkidle2' })
                     await utils.sleep(6000)
+                } else {
+                    logger.printv("no captcha was solved")
                 }
             }
 

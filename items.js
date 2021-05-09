@@ -14,7 +14,6 @@ module.exports = [
 
             logger.print("walmart captured by captcha, wait for load")
             await utils.sleep(12000)
-            logger.printv("begin solving captcha")
         },
         func: () => {
             if (!document.querySelector(".prod-blitz-copy-message"))
@@ -27,6 +26,7 @@ module.exports = [
         name: "Best Buy Xbox Series X",
         url: "https://www.bestbuy.com/site/microsoft-xbox-series-x-1tb-console-black/6428324.p?skuId=6428324",
         time: Date.now(),
+        waitUntil: "domcontentloaded",
         init: async (page, self) => {
             //await page.setJavaScriptEnabled(false)
         },
