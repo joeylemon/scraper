@@ -2,6 +2,18 @@ const logger = require('./logger.js')
 const mailer = require('./mailer.js')
 const config = require('./config.json')
 const scraper = require('./scraper.js')
+const utils = require('./utils.js')
+
+// Listen for console input for debugging stepping
+const stdin = process.openStdin()
+stdin.addListener("data", function (d) {
+    if (!utils.isDebuggingEnabled()) return
+
+    utils.setDebugWaiting(false)
+    setTimeout(() => {
+        utils.setDebugWaiting(true)
+    }, 500)
+})
 
 /**
  * Send an email after finding an available item

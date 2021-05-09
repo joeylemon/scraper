@@ -4,6 +4,8 @@ const logger = require('./logger.js')
 const utils = require('./utils.js')
 const config = require('./config.json')
 
+const proxyChain = require('proxy-chain')
+
 const puppeteer = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const RecaptchaPlugin = require('puppeteer-extra-plugin-recaptcha')
@@ -35,11 +37,12 @@ class Scraper {
         try {
             // Launch browser with options to help reduce CPU usage
             logger.printv("launch browser")
+            const proxyUrl = await proxyChain.anonymizeProxy('http://zhlqmfxz-rotate:axnnhrifc9yd@p.webshare.io:80')
             this.browser = await puppeteer.launch({
                 headless: !utils.isVisualBrowserEnabled(),
                 userDataDir: "./browser_data",
                 args: [
-                    '--proxy-server=http://152.26.66.140:3128',
+                    `--proxy-server=${proxyUrl}`,
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
                     '--disable-dev-shm-usage',
@@ -71,6 +74,11 @@ class Scraper {
                             logger.printf("{YL}???{N} %s unavailable\n", item.name)
                             break
                     }
+                }
+
+                if (utils.isDebuggingEnabled()) {
+                    console.log("waiting for input to continue debugging ...")
+                    while (utils.isDebugWaiting()) { await utils.sleep(50) }
                 }
 
                 item.time = Date.now()

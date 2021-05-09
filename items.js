@@ -28,7 +28,7 @@ module.exports = [
         url: "https://www.bestbuy.com/site/microsoft-xbox-series-x-1tb-console-black/6428324.p?skuId=6428324",
         time: Date.now(),
         init: async (page, self) => {
-            await page.setJavaScriptEnabled(false)
+            //await page.setJavaScriptEnabled(false)
         },
         func: () => {
             if (!document.querySelector(".fulfillment-add-to-cart-button"))
@@ -39,7 +39,7 @@ module.exports = [
     },
     {
         name: "Newegg Xbox Series X",
-        url: "https://www.newegg.com/p/N82E16868105273",
+        url: "https://www.newegg.com/p/N82E16868105273?Item=N82E16868105273",
         time: Date.now(),
         init: async (page, self) => {
             await page.setJavaScriptEnabled(false)
@@ -76,8 +76,15 @@ module.exports = [
         url: "https://www.xbox.com/en-us/configure/8wj714n3rbtl",
         time: Date.now(),
         func: () => {
-            const selector = ".src-pages-BundleBuilder-components-BundleBuilderHeader-__BundleBuilderHeader-module___checkoutButton.w-100.bg-light-green.btn.btn-primary"
-            return !document.querySelector(selector) || !document.querySelector(selector).innerText.toLowerCase().includes("out of stock")
+            return !document.querySelector(".btn-primary") || !document.querySelector(".btn-primary").innerText.toLowerCase().includes("out of stock")
+        }
+    },
+    {
+        name: "Costco Xbox Series X",
+        url: "https://www.costco.com/xbox-series-x-1tb-console-with-additional-controller.product.100691493.html",
+        time: Date.now(),
+        func: () => {
+            return !document.querySelector(".oos-overlay") || !document.querySelector(".oos-overlay").title.toLowerCase().includes("out of stock")
         }
     },
     {
