@@ -58,6 +58,7 @@ class Scraper {
             // Scrape every item individually and sequentially
             for (const item of items) {
                 const page = await createPage(this.browser)
+
                 const available = await this.scrape(page, item)
 
                 if (typeof available === "string") {
@@ -66,7 +67,14 @@ class Scraper {
                     switch (available) {
                         case true:
                             logger.printf("{GN}✔{N} %s available!\n", item.name)
+
+                            if (Date.now() - item.lastAvailable < 5 * 60 * 1000) {
+                                logger.printf("don't send email since it hasn't been 5 minutes since the last one")
+                                break
+                            }
+
                             onFound(item)
+                            item.lastAvailable = Date.now()
                             break
                         case false:
                             logger.printf("{RD}✘{N} %s unavailable\n", item.name)
