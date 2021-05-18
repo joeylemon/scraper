@@ -1,17 +1,20 @@
 {
-    "sleep_time": 60,
+    "sleep_time": 0,
+    "notification_delay": 30,
     "email": {
-        "from": "",
-        "to": [""],
+        "from": "joeyclemon@gmail.com",
+        "to": [
+            "joeyclemon@gmail.com"
+        ],
         "nodemailer_settings": {
             "service": "gmail",
             "auth": {
-                "user": "",
-                "pass": ""
+                "user": "joeyclemon@gmail.com",
+                "pass": "zmclcqzmampicutz"
             }
         }
     },
     "2captcha": {
-        "api_token": ""
+        "api_token": "24ec83bab6766b599fa407204bde5827"
     }
 }

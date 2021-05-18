@@ -86,6 +86,20 @@ const items = [
     {
         name: "Target Xbox Series X",
         url: "https://www.target.com/p/xbox-series-x-console/-/A-80790841",
+        // init: async (page, self) => {
+        //     await page.setCookie({
+        //         name: "UserLocation",
+        //         value: "37922|35.911|-84.086|TN|US",
+        //         domain: ".target.com",
+        //         path: "/"
+        //     })
+        //     await page.setCookie({
+        //         name: "GuestLocation",
+        //         value: "37922|35.911|-84.086|TN|US",
+        //         domain: "www.target.com",
+        //         path: "/"
+        //     })
+        // },
         func: () => {
             return document.querySelector(".Button__ButtonWithStyles-y45r97-0.styles__StyledButton-sc-1f2lsll-0.eLsRDh.iyUhph") !== null
         }

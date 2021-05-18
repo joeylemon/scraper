@@ -50,7 +50,6 @@ class Scraper {
                     '--disable-accelerated-2d-canvas',
                     '--no-first-run',
                     '--no-zygote',
-                    '--single-process',
                     '--disable-gpu'
                 ]
             })
@@ -68,8 +67,8 @@ class Scraper {
                         case true:
                             logger.printf("{GN}✔{N} %s available!\n", item.name)
 
-                            if (Date.now() - item.lastAvailable < 5 * 60 * 1000) {
-                                logger.printf("don't send email since it hasn't been 5 minutes since the last one")
+                            if (Date.now() - item.lastAvailable < config.notification_delay * 60000) {
+                                logger.printfv("skip notification since it's been less than %d minutes since the last one", config.notification_delay)
                                 break
                             }
 
